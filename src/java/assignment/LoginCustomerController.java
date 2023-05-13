@@ -45,12 +45,12 @@ public class LoginCustomerController extends HttpServlet {
         
         if (request.getParameter("email").isEmpty()) {
             session.setAttribute("status", "EmptyEmail");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("customer/login.jsp");
             return;
         }
         if (request.getParameter("password").isEmpty()) {
             session.setAttribute("status", "EmptyPass");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("customer/login.jsp");
             return;
         }
         
@@ -62,11 +62,11 @@ public class LoginCustomerController extends HttpServlet {
             try {
                 Customer customer = (Customer) query.getSingleResult();
                 session.setAttribute("customer", customer);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("customer/index.jsp");
             } catch (NoResultException e) {
                 session.setAttribute("status", "loginError");
                 
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("customer/login.jsp");
             }
         } catch (Exception e) {
             // Something went wrong page here
